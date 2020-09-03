@@ -1,0 +1,28 @@
+{
+  "name": "extractor",
+  "version": "1.0.0",
+  "description": "Custom bot for Vanilla Extract's discord server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Beatso1/extractor.git"
+  },
+  "keywords": [
+    "discord",
+    "discordjs"
+  ],
+  "author": "Beatso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Beatso1/extractor/issues"
+  },
+  "homepage": "https://github.com/Beatso1/extractor#readme",
+  "dependencies": {
+    "discord.js": "^12.3.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
+}
