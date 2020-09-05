@@ -61,4 +61,5 @@ client.on("messageReactionAdd", async (reaction, user) => {
 	}
 })
 
+keepAlive()
 client.login(process.env.token)
