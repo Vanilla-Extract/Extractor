@@ -1,6 +1,6 @@
 const fs = require('fs')
 const Discord = require('discord.js')
-const { prefix } = require('./config.json')
+const { prefix, verifyChannelID, verifiedRoleID } = require('./config.json')
 require("dotenv").config()
 const keepAlive = require('./server')
 
@@ -50,5 +50,15 @@ client.on('message', message => {
 
 client.on('guildMemberAdd', member => client.channels.cache.get('751093731171762188').send(`<@${member.id}> joined the server. \`${member.guild.memberCount}\``))
 client.on('guildMemberRemove', member => client.channels.cache.get('751093731171762188').send(`<@${member.id}> left the server. \`${member.guild.memberCount}\``))
+
+
+client.on("messageReactionAdd", async (reaction, user) => {
+	if (reaction.message.partial) await reaction.message.fetch();
+	if (reaction.partial) await reaction.fetch();
+	if  (!reaction.message.guild) return;
+	if (reaction.message.channel.id == verifyChannelID) {
+		if (reaction.emoji.name == "🍉") { await reaction.message.guild.members.cache.get(user.id).roles.add(verifiedRoleID) }
+	}
+})
 
 client.login(process.env.token)
