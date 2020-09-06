@@ -1,6 +1,6 @@
 const fs = require('fs')
 const Discord = require('discord.js')
-const { prefix, verifyChannelID, verifiedRoleID } = require('./config.json')
+const { prefix, verifyChannelID, verifiedRoleID, roleChannelID, roleDataChannelID } = require('./config.json')
 require("dotenv").config()
 const keepAlive = require('./server')
 
@@ -59,6 +59,28 @@ client.on("messageReactionAdd", async (reaction, user) => {
 	if (reaction.message.channel.id == verifyChannelID) {
 		if (reaction.emoji.name == "🍉") { await reaction.message.guild.members.cache.get(user.id).roles.add(verifiedRoleID) }
 	}
+	client.channels.cache.get(roleDataChannelID).messages.fetch({limit:1}).then(async messages=>{
+		const reactionsConfig = JSON.parse(messages.last().content)
+		let availableReactions = []
+		for (i in reactionsConfig) {availableReactions.push(reactionsConfig[i].emoji)}
+		if (reaction.message.channel.id==roleChannelID && availableReactions.includes(reaction.emoji.name)) {
+			await reaction.message.guild.members.cache.get(user.id).roles.add(reactionsConfig[availableReactions.indexOf(reaction.emoji.name)].role)
+		}
+	})
+})
+
+client.on("messageReactionRemove", async (reaction, user) => {
+	if (reaction.message.partial) await reaction.message.fetch()
+	if (reaction.partial) await reaction.fetch()
+	if (!reaction.message.guild) return
+	client.channels.cache.get(roleDataChannelID).messages.fetch({limit:1}).then(async messages=>{
+		const reactionsConfig = JSON.parse(messages.last().content)
+		let availableReactions = []
+		for (i in reactionsConfig) {availableReactions.push(reactionsConfig[i].emoji)}
+		if (reaction.message.channel.id==roleChannelID && availableReactions.includes(reaction.emoji.name)) {
+			await reaction.message.guild.members.cache.get(user.id).roles.remove(reactionsConfig[availableReactions.indexOf(reaction.emoji.name)].role)
+		}
+	})
 })
 
 keepAlive()
