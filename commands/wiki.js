@@ -1,4 +1,4 @@
-const { prefix, color } = require('../config.json');
+const { prefix, color } = require('../config.json')
 
 module.exports = {
     name: 'wiki',
@@ -16,7 +16,7 @@ module.exports = {
         }
         return message.channel.send({embed: embed})
         .catch(error => {
-            console.error(`Could not give wiki link to ${message.author.tag}.\n`, error);
+            console.error(`Could not give wiki link to ${message.author.tag}.\n`, error)
             message.reply('There was an error searching for that.')
         })
     }
