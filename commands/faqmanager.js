@@ -39,7 +39,7 @@ module.exports = {
                             if (reaction=='🆕') {
                                 message.author.send({embed:{"title":"Enter Keyword","description":"Enter the keyword of the question you would like to add.","color":color}}).then(keywordMessage=>{
                                     keywordMessage.channel.awaitMessages(()=>true, { max: 1, time: 60000, errors: ['time'] }).then(messageCollection=>{
-                                        const newKeyword = messageCollection.array()[0].content.replace(" ","-")
+                                        const newKeyword = messageCollection.array()[0].content.replace(" ","-").toLowerCase()
                                         message.author.send({embed:{"title":"Enter Question","description":"Enter the new question. You can use full markdown.","color":color}}).then(questionMessage=>{
                                             questionMessage.channel.awaitMessages(()=>true, { max: 1, time: 60000, errors: ['time'] }).then(messageCollection=>{
                                                 const newQuestion = messageCollection.array()[0].content
@@ -73,7 +73,7 @@ module.exports = {
                                                         if (reaction=="🇰") {
                                                             partEditMessage.channel.send({embed:{"title":"Edit Keyword","description":"Enter a new keyword.","color":color}}).then(()=>{
                                                                 partEditMessage.channel.awaitMessages(()=>true, { max: 1, time: 60000, errors: ['time'] }).then(messageCollection=>{
-                                                                    const newKeyword = messageCollection.array()[0].content.replace(" ","-")
+                                                                    const newKeyword = messageCollection.array()[0].content.replace(" ","-").toLowerCase()
                                                                     partEditMessage.channel.send({embed:{"title":"Keyword Successfully Edited","description":`Here is the updated question:\n**K:** \`${newKeyword}\`\n**Q:** ${question.question}\n**A:** ${question.answer}`,"color":color}})
                                                                     faqList[keywordsList.indexOf(providedKeyword)].keyword = newKeyword
                                                                     updateFaqChannel(faqList)
