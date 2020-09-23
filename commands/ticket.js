@@ -5,7 +5,7 @@ module.exports = {
     cooldown: 5,
 	execute(message, args) {
         message.channel.send(`**Rules Of A Ticket**
-    1. Wait *patiently*! There will be times when you won't get an immediate response!
+1. Wait *patiently*! There will be times when you won't get an immediate response!
 2. Don't ask to ask, just ask.
 3. Don't wait for us! Just say what you want with the format below!
 
