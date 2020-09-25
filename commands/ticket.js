@@ -1,4 +1,4 @@
-const { prefix, color } = require('../config.json')
+const { color } = require('../config.json')
 
 module.exports = {
     name: 'ticket',
@@ -6,9 +6,9 @@ module.exports = {
 	execute(message, args) {
         message.delete().then(()=>{
             message.channel.send({embed:{
+                "color": color,
                 "title": "Rules Of A Ticket",
-                "description": `**Rules Of A Ticket**
-1. Wait *patiently*! There will be times when you won't get an immediate response!
+                "description": `1. Wait *patiently*! There will be times when you won't get an immediate response!
 2. Don't ask to ask, just ask.
 3. Don't wait for us! Just say what you want with the format below:
 
