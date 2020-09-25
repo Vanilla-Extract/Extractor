@@ -10,11 +10,11 @@ module.exports = {
                 "fields": [
                     {
                         "name": ":one:",
-                        "value": "Wait *patiently*! There will be times when you won't get an immediate response!"
+                        "value": "Wait *patiently*! There will be times when you won't get an immediate response!\n"
                     },
                     {
                         "name": ":two:",
-                        "value": "Don't ask to ask, just ask."
+                        "value": "Don't ask to ask, just ask.\n"
                     },
                     {
                         "name": ":three:",
