@@ -56,9 +56,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 	if (reaction.message.partial) await reaction.message.fetch()
 	if (reaction.partial) await reaction.fetch()
 	if (!reaction.message.guild) return
-	if (reaction.message.channel.id == verifyChannelID) {
-		if (reaction.emoji.name == "🍉") { await reaction.message.guild.members.cache.get(user.id).roles.add(verifiedRoleID) }
-	}
+	if (reaction.message.channel.id == verifyChannelID) await reaction.message.guild.members.cache.get(user.id).roles.add(verifiedRoleID)
 	client.channels.cache.get(roleDataChannelID).messages.fetch({limit:1}).then(async messages=>{
 		const reactionsConfig = JSON.parse(messages.last().content)
 		let availableReactions = []
