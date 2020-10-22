@@ -6,7 +6,7 @@ module.exports = {
     cooldown: 0,
     type: "admin",
 	execute(message, args) {
-        if (!message.member.roles.cache.some(role => role.id == moderatorRoleID)) message.delete().then(message.channel.send("This command is only available to moderators.").then(message=>message.delete({timeout:messageTimeout}))).catch((error)=>console.error(error))
+        if (!message.member.roles.cache.some(role => role.id == moderatorRoleID)) message.channel.send("This command is only available to moderators.")
         else {
             client.channels.cache.get(faqDataChannelID).messages.fetch({limit:1}).then(messages=>{
                 let faqList = JSON.parse(messages.last().content)
