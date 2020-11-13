@@ -9,7 +9,8 @@ module.exports = {
             "title": "Rules Of A Ticket",
             "description": `1. Wait *patiently*! There will be times when you won't get an immediate response!
 2. Don't ask to ask, just ask.
-3. Don't wait for us! Just say what you want with the format below:
+3. The team *helps* with your pack, not make them for you!
+4. Don't wait for us! Just say what you want with the format below:
 
 What you need help with
 Whats supposed to happen
