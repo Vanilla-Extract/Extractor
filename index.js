@@ -16,6 +16,11 @@ for (const file of fs.readdirSync('./commands').filter(file => file.endsWith('.j
 
 const cooldowns = new Discord.Collection()
 
+client.once("ready", () => {
+	console.log("bot running")
+	client.user.setActivity("github.com/Vanilla-Extract")
+})
+
 client.on('message', message => {
 	if (!message.content.startsWith(prefix)) return
 
