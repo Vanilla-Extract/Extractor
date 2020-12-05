@@ -1,4 +1,5 @@
 const { prefix, mutedRoleID, moderatorRoleID } = require("../config.json")
+const {client} = require("../index")
 
 
 module.exports = {
