@@ -1,5 +1,5 @@
 const { prefix, color, messageTimeout, faqDataChannelID } = require('../config.json')
-const {client} = require("../index.js")
+const {client, faqDatabase} = require("../index.js")
 
 module.exports = {
     name: 'faq',
