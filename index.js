@@ -3,11 +3,15 @@ const Discord = require('discord.js')
 const { prefix, verifyChannelID, verifiedRoleID, roleChannelID, roleDataChannelID } = require('./config.json')
 require("dotenv").config()
 const keepAlive = require('./server')
+const Database = require("@replit/database")
 
 const client = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]})
 client.once('ready', () => console.log('bot running'))
 client.commands = new Discord.Collection()
 module.exports.client=client
+
+const faqDatabase = new Database()
+module.exports.faqDatabase = faqDatabase
 
 for (const file of fs.readdirSync('./commands').filter(file => file.endsWith('.js'))) {
 	const command = require(`./commands/${file}`)
