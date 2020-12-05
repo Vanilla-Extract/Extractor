@@ -5,14 +5,14 @@
 
 `!mute (user) [duration]`
 
-**user**
+() = Required  
+[] = Optional  
+
+**user**  
 A @mention or ID of the user you want to mute.
 
-**duration**
+**duration**  
 The duration, in hours, that the user should be muted for. If unspecified, the user will be muted indefinitely.
-
-() = Required
-[] = Optional
 
 ## Examples
 
