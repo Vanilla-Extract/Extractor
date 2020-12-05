@@ -25,9 +25,10 @@ module.exports = {
 						setTimeout ( () => {
 							member.roles.remove(mutedRole, `Unmuted automatically after ${duration} hours. Originally muted by ${message.author.tag}`)
 						}, duration*3600000)
+					} else {
+						member.roles.add(mutedRole, `Muted indefinitely by ${message.author.tag}`)
+						message.channel.send(`Muted **${user.tag}** indefinitely.`)
 					}
-					member.roles.add(mutedRole, `Muted indefinitely by ${message.author.tag}`)
-					message.channel.send(`Muted **${user.tag}** indefinitely.`)
 				}
 			}	
 		}
