@@ -6,7 +6,7 @@ module.exports = {
     name: "unmute",
     cooldown: 5,
 	execute(message, args) {
-		if (message.member.roles.cache.some(role => role.id==moderatorRoleID)) message.channel.send("You need to be a moderator to do that!")
+		if (!(message.member.roles.cache.some(role => role.id==moderatorRoleID))) message.channel.send("You need to be a moderator to do that!")
 		else {
 			if (args[0]==undefined) message.channel.send(`You need to mention a user!\nUsage: ${prefix}unmute @User`)
 			else {
