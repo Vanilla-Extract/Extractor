@@ -1,15 +1,16 @@
 const { prefix, color, moderatorRoleID, faqChannelID, faqDataChannelID } = require('../config.json')
-const {client} = require("../index.js")
+const {client, faqDatabase} = require("../index.js")
 
 module.exports = {
     name: 'faqmanager',
     cooldown: 0,
     type: "admin",
 	execute(message, args) {
-        if (!message.member.roles.cache.some(role => role.id == moderatorRoleID)) message.delete().then(message.channel.send("This command is only available to moderators.").then(message=>message.delete({timeout:messageTimeout}))).catch((error)=>console.error(error))
+        if (!message.member.roles.cache.some(role => role.id == moderatorRoleID)) message.channel.send("This command is only available to moderators.")
         else {
-            client.channels.cache.get(faqDataChannelID).messages.fetch({limit:1}).then(messages=>{
-                let faqList = JSON.parse(messages.last().content)
+            // let faqList = JSON.parse(messages.last().content)
+            faqDatabase.get("faqs").then(faqList=>{
+                console.log(faqList)
                 const keywordsList = faqList.map(i=>i.keyword)
                 function updateFaqChannel (faqs) {
                     const faqChannel = client.channels.cache.get(faqChannelID)
@@ -22,7 +23,8 @@ module.exports = {
                             "color":color
                         }})
                     }
-                    client.channels.cache.get(faqDataChannelID).send(JSON.stringify(faqs))
+                    // client.channels.cache.get(faqDataChannelID).send(JSON.stringify(faqs))
+                    faqDatabase.set("faqs", faqs)
                 }
                 message.react("✅")
                 message.author.send({embed:{"title":"FAQ Manager","description":"What would you like to do?\n🆕 Create a new question\n✏️ Edit an existing question\n❌ Delete a question","color":color}}).then(managerMenuMsg=>{
@@ -35,7 +37,7 @@ module.exports = {
                         managerMenuMsg.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
                         .then(collected=>{
                             const reaction = collected.first().emoji.name
-
+    
                             if (reaction=='🆕') {
                                 message.author.send({embed:{"title":"Enter Keyword","description":"Enter the keyword of the question you would like to add.","color":color}}).then(keywordMessage=>{
                                     keywordMessage.channel.awaitMessages(()=>true, { max: 1, time: 60000, errors: ['time'] }).then(messageCollection=>{
@@ -124,7 +126,6 @@ module.exports = {
                             }
                         })
                     })
-                    
                 })
             })
         }
