@@ -11,10 +11,7 @@
 		"type": "git",
 		"url": "git+https://github.com/Beatso1/extractor.git"
 	},
-	"keywords": [
-		"discord",
-		"discordjs"
-	],
+	"keywords": [ "discord", "discordjs" ],
 	"author": "Beatso",
 	"license": "MIT",
 	"bugs": {
