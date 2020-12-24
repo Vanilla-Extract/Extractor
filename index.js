@@ -90,5 +90,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
 	})
 })
 
+require("./picasso")
+
 keepAlive()
 client.login(process.env.token)
