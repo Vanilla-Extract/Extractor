@@ -10,7 +10,7 @@ module.exports = {
                 const member = message.guild.members.cache.get(args[0])
                 message.channel.send(`\`${member.user.tag}\` joined at \`${member.joinedAt.toUTCString()}\`.`)
             } catch ( error ) {
-                message.reply("there was error trying to do that. Are you sure you entered a valid ID?\nhttps://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-")
+                message.reply("There was error trying to do that. Are you sure you entered a valid ID?\nhttps://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-")
             }
         }
     }
