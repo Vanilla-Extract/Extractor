@@ -5,7 +5,6 @@ require("dotenv").config()
 const keepAlive = require('./server')
 
 const client = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]})
-client.once('ready', () => console.log('bot running'))
 client.commands = new Discord.Collection()
 module.exports.client=client
 
