@@ -1,23 +1,33 @@
 const fs = require("fs")
+const request = require("request")
 
-module.exports = () => {
+module.exports = async () => {
 
-	let faqList = []
-	const faqString = fs.readFileSync("./faq.md", {encoding:"utf-8"})
 	const regex = /## (.+)$\r?\nKeyword: `(\w+)`\s*$\r?\n((?:.|\r?\n(?!\s*## ))*)/gm
-	
-	let match = regex.exec(faqString)
+	var faqList = []
 
-	while (match) {
-		faqList.push({
-			"question": match[1].trim(),
-			"keyword": match[2],
-			"answer": match[3].trim()
-		}) 
-		match = regex.exec(faqString)
-	}
+	await new Promise ( (resolve, reject) => {
+
+		request("https://raw.githubusercontent.com/Vanilla-Extract/Extractor/master/faq.md", (err, res, body) => {
+			if (err) reject(err)
+			else {
+				
+				let match = regex.exec(body)
+			
+				while (match) {
+					faqList.push({
+						"question": match[1].trim(),
+						"keyword": match[2],
+						"answer": match[3].trim()
+					}) 
+					match = regex.exec(body)
+				}
+				
+				resolve(faqList)
+
+			}
+		})
+	})
 
 	return faqList
 }
-
-console.log(module.exports())
