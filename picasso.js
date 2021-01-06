@@ -23,7 +23,7 @@ const scaleAndSend = (inputAttachment, channel) => {
 
 	if (inputAttachment==undefined) {
 		
-		channel.send("There was no attachment on that message.\nUse \`!scale\` in a message with an image, or reply to an image with `\!scale`\ to scale it.")
+		channel.send('There was no attachment on that message.\nUse \`!scale\` in a message with an image, or reply to an image with `\!scale`\ to scale it.')
 		return
 	}
 
