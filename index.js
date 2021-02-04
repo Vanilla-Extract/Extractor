@@ -3,6 +3,7 @@ const Discord = require('discord.js')
 const { prefix, verifyChannelID, verifiedRoleID, roleChannelID, roleDataChannelID } = require('./config.json')
 require("dotenv").config()
 const keepAlive = require('./server')
+const db = require('quick.db')
 
 // set up webhook
 /*
