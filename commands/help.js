@@ -19,7 +19,7 @@ module.exports = {
 			}
 		}
 
-		const responseEmbed = new Discord.MessageEmbed().setColor('#7289da').setTitle('Commands for actual bot');
+		const responseEmbed = new Discord.MessageEmbed().setColor('#7289da').setTitle('Commands');
 
 		for (var i = 0; i < cmdList.length; i = i + 2) {
 			responseEmbed.addFields({ name: cmdList[i], value: cmdList[i + 1] });
