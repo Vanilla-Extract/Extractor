@@ -114,6 +114,27 @@ client.on("message", message => {
 
 })
 
+//🤔
+db.set('thonks', 0);
+client.on('message', (message) => {
+	if (
+		message.channel.id != '806992760753487952' || // the message is in thonk
+		message.author.id == client.user.id // the message was sent my the bot
+	)
+		return;
+	if (
+		message.content.toString() != '<:thonk:776478353187405825>' && //thonk in ve
+		message.content.toString() != '<:stevethink:798641834288480307>' && // stevethonk in ve
+		message.content.toString() != '<:thonk:776478353187405825> ' && //thonk in ve
+		message.content.toString() != '<:stevethink:798641834288480307> ' // stevethonk in ve
+	) {
+		message.delete();
+	} else {
+		db.add('thonks', 1);
+	}
+});
+
+// picture man
 require("./picasso")
 
 keepAlive()
