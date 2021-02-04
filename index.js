@@ -151,6 +151,7 @@ client.on('message', (message) => {
 	} else {
 		db.add('thonks', 1);
 	}
+	message.channel.setTopic(`Thonks: ${db.get('thonks')}`);
 });
 
 // picture man
