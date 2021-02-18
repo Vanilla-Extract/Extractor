@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, verifyChannelID, verifiedRoleID, roleChannelID, roleDataChannelID } = require('./config.json');
@@ -16,6 +17,14 @@ const client = new Discord.Client({ partials: [ 'MESSAGE', 'CHANNEL', 'REACTION'
 client.commands = new Discord.Collection();
 module.exports.client = client;
 =======
+=======
+const fs = require('fs')
+const Discord = require('discord.js')
+const { prefix, verifyChannelID, verifiedRoleID, roleChannelID, roleDataChannelID } = require('./config.json')
+require("dotenv").config()
+const keepAlive = require('./server')
+
+>>>>>>> parent of 4db177e (Update index.js)
 const client = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]})
 client.commands = new Discord.Collection()
 module.exports.client=client
@@ -118,6 +127,7 @@ client.on('messageReactionRemove', async (reaction, user) => {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // creations webhook
 // move messages
 client.on("message", message => {
@@ -165,6 +175,8 @@ client.on('message', (message) => {
 // picture man
 require('./picasso');
 =======
+=======
+>>>>>>> parent of 4db177e (Update index.js)
 require("./picasso")
 >>>>>>> parent of 4db177e (Update index.js)
 
