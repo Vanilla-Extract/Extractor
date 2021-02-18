@@ -1,54 +1,33 @@
-<<<<<<< HEAD
 const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, verifyChannelID, verifiedRoleID, roleChannelID, roleDataChannelID } = require('./config.json');
 require('dotenv').config();
 const keepAlive = require('./server');
-const db = require('quick.db');
 
-<<<<<<< HEAD
 // set up webhook
+/*
 const webhookID = process.env.webhookurl.substr(33, 18)
 const webhookToken = process.env.webhookurl.substr(52, 68)
 const creationsWebhook = new Discord.WebhookClient(webhookID, webhookToken)
-
+*/
 
 const client = new Discord.Client({ partials: [ 'MESSAGE', 'CHANNEL', 'REACTION' ] });
 client.commands = new Discord.Collection();
 module.exports.client = client;
-=======
-=======
-const fs = require('fs')
-const Discord = require('discord.js')
-const { prefix, verifyChannelID, verifiedRoleID, roleChannelID, roleDataChannelID } = require('./config.json')
-require("dotenv").config()
-const keepAlive = require('./server')
-
->>>>>>> parent of 4db177e (Update index.js)
-const client = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]})
-client.commands = new Discord.Collection()
-module.exports.client=client
->>>>>>> parent of 4db177e (Update index.js)
-
 for (const file of fs.readdirSync('./commands').filter((file) => file.endsWith('.js'))) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
 }
-
 const cooldowns = new Discord.Collection();
-
 client.once('ready', () => {
 	console.log('bot running');
 	client.user.setActivity('github.com/Vanilla-Extract');
 });
-
 client.on('message', (message) => {
 	if (!message.content.startsWith(prefix)) return;
-
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 	if (!client.commands.has(command)) return;
-
 	// cooldown stuff
 	if (!cooldowns.has(command.name)) {
 		cooldowns.set(command.name, new Discord.Collection());
@@ -65,7 +44,6 @@ client.on('message', (message) => {
 	}
 	timestamps.set(message.author.id, now);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-
 	try {
 		client.commands.get(command).execute(message, args);
 	} catch (error) {
@@ -73,7 +51,6 @@ client.on('message', (message) => {
 		message.reply('there was an error trying to execute that command!');
 	}
 });
-
 client.on('guildMemberAdd', (member) => {
 	client.channels.cache
 		.get('751093731171762188')
@@ -82,12 +59,11 @@ client.on('guildMemberAdd', (member) => {
 		member.roles.add(member.guild.roles.cache.find((role) => role.id == '731568194552070184')); // add bot role
 	else member.roles.add(member.guild.roles.cache.find((role) => role.id == '731570521690472508')); // add member role
 });
-client.on('guildMemberRemove', (member) => {
+client.on('guildMemberRemove', (member) =>
 	client.channels.cache
 		.get('751093731171762188')
-		.send(`<@${member.id}> left the server. \`${member.guild.memberCount}\``);
-});
-
+		.send(`<@${member.id}> left the server. \`${member.guild.memberCount}\``)
+);
 client.on('messageReactionAdd', async (reaction, user) => {
 	if (reaction.message.partial) await reaction.message.fetch();
 	if (reaction.partial) await reaction.fetch();
@@ -107,7 +83,6 @@ client.on('messageReactionAdd', async (reaction, user) => {
 		}
 	});
 });
-
 client.on('messageReactionRemove', async (reaction, user) => {
 	if (reaction.message.partial) await reaction.message.fetch();
 	if (reaction.partial) await reaction.fetch();
@@ -126,10 +101,9 @@ client.on('messageReactionRemove', async (reaction, user) => {
 	});
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 // creations webhook
 // move messages
+/*
 client.on("message", message => {
 
 	if (
@@ -140,7 +114,7 @@ client.on("message", message => {
 		message.content.includes("https://") // there is a link
 
 	) return
-	
+
 	message.delete()
 	message.reply(`your message was deleted because it didn't have an attachment, image or link. Please use <#${process.env.discussionchannelid}> for talking about creations posted in this channel.`).then(response=>response.delete({timeout:15000}))
 
@@ -150,35 +124,9 @@ client.on("message", message => {
 	creationsWebhook.send(message.content, { username: name, avatarURL: message.author.avatarURL({dynamic:true}) } )
 
 })
+*/
 
-//🤔
-db.set('thonks', 0);
-client.on('message', (message) => {
-	if (
-		message.channel.id != '742137060365828127' || // the message is not in thonk
-		message.author.id == client.user.id // the message was sent my the bot
-	)
-		return;
-	if (
-		message.content.toString() != '<:thonk:776478353187405825>' && //thonk in ve
-		message.content.toString() != '<:stevethink:798641834288480307>' && // stevethonk in ve
-		message.content.toString() != '<:thonk:776478353187405825> ' && //thonk in ve
-		message.content.toString() != '<:stevethink:798641834288480307> ' // stevethonk in ve
-	) {
-		message.delete();
-	} else {
-		db.add('thonks', 1);
-	}
-	message.channel.setTopic(`Thonks: ${db.get('thonks')}`);
-});
-
-// picture man
 require('./picasso');
-=======
-=======
->>>>>>> parent of 4db177e (Update index.js)
-require("./picasso")
->>>>>>> parent of 4db177e (Update index.js)
 
 keepAlive();
 client.login(process.env.token);
