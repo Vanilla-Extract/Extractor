@@ -5,6 +5,7 @@ require('dotenv').config();
 const keepAlive = require('./server');
 const db = require('quick.db');
 
+<<<<<<< HEAD
 // set up webhook
 const webhookID = process.env.webhookurl.substr(33, 18)
 const webhookToken = process.env.webhookurl.substr(52, 68)
@@ -14,6 +15,11 @@ const creationsWebhook = new Discord.WebhookClient(webhookID, webhookToken)
 const client = new Discord.Client({ partials: [ 'MESSAGE', 'CHANNEL', 'REACTION' ] });
 client.commands = new Discord.Collection();
 module.exports.client = client;
+=======
+const client = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]})
+client.commands = new Discord.Collection()
+module.exports.client=client
+>>>>>>> parent of 4db177e (Update index.js)
 
 for (const file of fs.readdirSync('./commands').filter((file) => file.endsWith('.js'))) {
 	const command = require(`./commands/${file}`);
@@ -111,6 +117,7 @@ client.on('messageReactionRemove', async (reaction, user) => {
 	});
 });
 
+<<<<<<< HEAD
 // creations webhook
 // move messages
 client.on("message", message => {
@@ -157,6 +164,9 @@ client.on('message', (message) => {
 
 // picture man
 require('./picasso');
+=======
+require("./picasso")
+>>>>>>> parent of 4db177e (Update index.js)
 
 keepAlive();
 client.login(process.env.token);
