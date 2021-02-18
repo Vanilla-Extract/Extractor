@@ -60,17 +60,18 @@ client.on('message', (message) => {
 	}
 });
 
-client.on('guildMemberAdd', (member) =>
+client.on('guildMemberAdd', (member) => {
 	client.channels.cache
 		.get('751093731171762188')
-		.send(`<@${member.id}> joined the server. \`${member.guild.memberCount}\``)
-);
+		.send(`<@${member.id}> joined the server. \`${member.guild.memberCount}\``);
+	if (member.user.bot)
+		member.roles.add(member.guild.roles.cache.find((role) => role.id == '731568194552070184')); // add bot role
+	else member.roles.add(member.guild.roles.cache.find((role) => role.id == '731570521690472508')); // add member role
+});
 client.on('guildMemberRemove', (member) => {
 	client.channels.cache
 		.get('751093731171762188')
-		.send(`<@${member.id}> left the server. \`${member.guild.memberCount}\``)
-	if (member.user.bot) member.roles.add(member.guild.roles.cache.find(role=>role.id=="731568194552070184")) // add bot role
-	else member.roles.add(member.guild.roles.cache.find(role=>role.id=="731570521690472508")) // add member role
+		.send(`<@${member.id}> left the server. \`${member.guild.memberCount}\``);
 });
 
 client.on('messageReactionAdd', async (reaction, user) => {
