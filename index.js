@@ -6,11 +6,10 @@ const keepAlive = require('./server');
 const db = require('quick.db');
 
 // set up webhook
-/*
 const webhookID = process.env.webhookurl.substr(33, 18)
 const webhookToken = process.env.webhookurl.substr(52, 68)
 const creationsWebhook = new Discord.WebhookClient(webhookID, webhookToken)
-*/
+
 
 const client = new Discord.Client({ partials: [ 'MESSAGE', 'CHANNEL', 'REACTION' ] });
 client.commands = new Discord.Collection();
@@ -114,7 +113,6 @@ client.on('messageReactionRemove', async (reaction, user) => {
 
 // creations webhook
 // move messages
-/*
 client.on("message", message => {
 
 	if (
@@ -135,7 +133,7 @@ client.on("message", message => {
 	creationsWebhook.send(message.content, { username: name, avatarURL: message.author.avatarURL({dynamic:true}) } )
 
 })
-*/
+
 //🤔
 db.set('thonks', 0);
 client.on('message', (message) => {
