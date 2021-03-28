@@ -30,7 +30,7 @@ for (const file of fs.readdirSync('./commands').filter((file) => file.endsWith('
 const cooldowns = new Discord.Collection();
 
 // for starboard
-const starTypes = [ [ '0', '⭐' ], [ '2', '🌟' ], [ '10', '💫' ], [ '3', '✨' ] ];
+const starTypes = [ [ '0', '⭐' ], [ '5', '🌟' ], [ '10', '💫' ], [ '20', '✨' ] ];
 // ['amount needed', 'emoji']
 
 client.once('ready', () => {
@@ -109,7 +109,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
 	// console.log(sentMessage);
 	// msgs.find((m) => (m.embeds.length === 1 ? (msg.embeds[0].footer.text == message.id ? true : false) : false));
-	if (reaction.emoji.name == '⭐' && reaction.count >= 1) {
+	if (reaction.emoji.name == '⭐' && reaction.count >= 3) {
 		// console.log('das a lot');
 		let embed = new Discord.MessageEmbed()
 			.setColor('#FAA944')
