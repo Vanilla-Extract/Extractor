@@ -213,7 +213,7 @@ client.on("message", message => {
 	) return
 
 	message.delete()
-	message.reply(`your message was deleted because it didn't have an attachment, image or link. Please use <#${process.env.discussionchannelid}> for talking about creations posted in this channel.`).then(response=>response.delete({timeout:15000}))
+	message.reply(`Your message was deleted because it didn't have an attachment, image or link. Please use <#${process.env.discussionchannelid}> for talking about creations posted in this channel.`).then(response=>response.delete({timeout:15000}))
 
 	if (message.member.nickname==null) name = message.author.username
 	else name = message.member.nickname
