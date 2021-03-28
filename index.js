@@ -137,7 +137,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 				embed: oldMessage.embeds[0]
 			};
 			await oldMessage.edit(newMessage);
-			console.log('done - increase');
+			// console.log('done - increase');
 		}
 	}
 });
@@ -161,7 +161,7 @@ client.on('messageReactionRemove', async (reaction, user) => {
 	const message = reaction.message;
 	// const msgs = starboardChannel.messages.fetch({ limit: 100 });
 	const starboardChannel = client.channels.cache.find((c) => c.id == starboardChannelID);
-	const sentMessage = starboard.get(message.id);
+	// const sentMessage = starboard.get(message.id);
 	let starType;
 	starTypes.forEach((star) => {
 		if (reaction.count >= star[0]) starType = star[1];
@@ -169,32 +169,17 @@ client.on('messageReactionRemove', async (reaction, user) => {
 
 	if (reaction.emoji.name == '⭐' && reaction.count >= 1) {
 		// console.log('das a lot');
-		let embed = new Discord.MessageEmbed()
-			.setColor('#FAA944')
-			.setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-			.setDescription(message.cleanContent)
-			.addField('Jump To Message', `[Click Here](${message.url})`, true);
-		// console.log(message);
-		if (message.attachments.size > 0) {
-			message.attachments.map((a) => embed.setImage(a.url));
-		}
-		if (sentMessage == null) {
-			starboardChannel.send(`${starType} ${reaction.count} - <#${message.channel.id}>`, { embed: embed });
-			const msg = await starboardChannel.messages.fetch({ limit: 1 });
-			// console.log(msg);
-			starboard.set(message.id, { originalMessage: message, starboardMessage: msg });
-		} else {
-			const oldMessage = await starboardChannel.messages.fetch(starboard.get(message.id).starboardMessage[0].id);
-			// console.log(oldMessage.embeds);
-			// console.log(starboard.get(message.id).starboardMessage);
-			console.log(reaction);
-			let newMessage = {
-				content: `${starType} **${reaction.count}** - <#${message.channel.id}>`,
-				embed: oldMessage.embeds[0]
-			};
-			await oldMessage.edit(newMessage);
-			console.log('done - decrease');
-		}
+
+		const oldMessage = await starboardChannel.messages.fetch(starboard.get(message.id).starboardMessage[0].id);
+		// console.log(oldMessage.embeds);
+		// console.log(starboard.get(message.id).starboardMessage);
+		// console.log(reaction);
+		let newMessage = {
+			content: `${starType} **${reaction.count}** - <#${message.channel.id}>`,
+			embed: oldMessage.embeds[0]
+		};
+		await oldMessage.edit(newMessage);
+		// console.log('done - decrease');
 	}
 });
 
