@@ -1,14 +1,15 @@
 {
-    "prefix": "!",
-    "moderatorRoleID": "751151665545085041",
-    "faqChannelID": "751179816480276482",
-    "faqDataChannelID": "751183198670815293",
-    "roleChannelID": "751132809497673808",
-    "roleDataChannelID": "751183143783891105",
-    "verifyChannelID": "731578900320223264",
-    "verifiedRoleID": "731570521690472508",
-    "mutedRoleID": "784895493376704572",
-    "messageTimeout": 3000,
-    "color": 2933627,
-    "nerdRoleID": "791875012700274709"
+	"prefix": "!",
+	"moderatorRoleID": "751151665545085041",
+	"faqChannelID": "751179816480276482",
+	"faqDataChannelID": "751183198670815293",
+	"roleChannelID": "751132809497673808",
+	"roleDataChannelID": "751183143783891105",
+	"verifyChannelID": "731578900320223264",
+	"verifiedRoleID": "731570521690472508",
+	"mutedRoleID": "784895493376704572",
+	"messageTimeout": 3000,
+	"color": 2933627,
+	"nerdRoleID": "791875012700274709",
+	"starboardChannelID": "825418334220320869"
 }

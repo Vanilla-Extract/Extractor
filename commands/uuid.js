@@ -1,14 +1,12 @@
-const { color } = require('../config.json')
+const { color } = require('../config.json');
 
 module.exports = {
 	name: 'uuid',
 	description: 'Generates an uuid',
-  cooldown: '0'
+	cooldown: '0',
 	execute(client, message, args, Discord, cmd) {
 		if (args[0] && (isNaN(args[0]) || (args[0] != '1' && args[0] != '4')))
-			return message.channel.send(
-				`You must specify a valid version for the uuid.\nValid Versions: 1, 4`
-			);
+			return message.channel.send(`You must specify a valid version for the uuid.\nValid Versions: 1, 4`);
 		const version = args[0] || 4;
 		let id;
 		if (version == '1') {
