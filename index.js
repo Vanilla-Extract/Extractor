@@ -121,10 +121,12 @@ client.on('messageReactionAdd', async (reaction, user) => {
 			message.attachments.map((a) => embed.setImage(a.url));
 		}
 		if (sentMessage == null) {
-			await starboardChannel.send(`${starType} **${reaction.count}** - <#${message.channel.id}>`, {
-				embed: embed
-			});
-			const msg = await starboardChannel.messages.fetch({ limit: 1 });
+			let msg;
+			await starboardChannel
+				.send(`${starType} **${reaction.count}** - <#${message.channel.id}>`, {
+					embed: embed
+				})
+				.then(async (message) => (msg = await starboardChannel.messages.fetch(message.id)));
 			// console.log(msg);
 			starboard.set(message.id, { originalMessage: message, starboardMessage: msg });
 		} else {
