@@ -53,7 +53,7 @@ client.on('message', (message) => {
 		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 		if (now < expirationTime) {
 			const timeLeft = (expirationTime - now) / 1000;
-			return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing that command.`);
+			return message.reply(`Please wait ${timeLeft.toFixed(1)} more second(s) before reusing that command.`);
 		}
 	}
 	timestamps.set(message.author.id, now);
@@ -62,7 +62,7 @@ client.on('message', (message) => {
 		client.commands.get(command).execute(message, args);
 	} catch (error) {
 		console.error(error);
-		message.reply('there was an error trying to execute that command!');
+		message.reply('There was an error trying to execute that command!');
 	}
 });
 client.on('guildMemberAdd', (member) => {
